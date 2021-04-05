@@ -1,0 +1,20 @@
+if [ $# -eq 0 ]
+then
+	echo -e "Usage: phone searchfor [...searchfor]\n(You didn't tell me what you want to search for.)"
+	exit 0
+fi
+
+rep=1
+for info
+do
+	searchfor+="$info"
+	if [ "$rep" -lt $# ]
+	then searchfor+="|"
+	fi
+	rep+=1
+done
+
+egrep "($searchfor)" mydata | awk -f display.awk
+
+exit 0
+	
